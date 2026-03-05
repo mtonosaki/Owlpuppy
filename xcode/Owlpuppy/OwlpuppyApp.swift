@@ -23,10 +23,24 @@ struct OwlpuppyApp: App {
         }
     }()
 
+#if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    init() {
+        appDelegate.sharedModelContainer = sharedModelContainer
+    }
+    
+    var body: some Scene {
+        Settings {
+            EmptyView()
+        }
+    }
+#else
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
     }
+#endif
 }
