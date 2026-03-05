@@ -9,7 +9,7 @@
 import Foundation
 import Network
 
-class ApiRemindController: BaseController<EventKitRemindService> {
+class ApiRemindController: BaseController<RemindService> {
     override var method: HTTPMethod { .POST }
     override var path: String { "/api/v1/remind" }
 }

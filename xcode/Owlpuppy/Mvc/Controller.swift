@@ -30,7 +30,9 @@ class BaseController<Service: ServiceProtocol>: Controller {
             guard let jsonData = request.body.data(using: .utf8) else {
                 return HTTPResponse(statusCode: 400, body: "Bad Request")
             }
-            let parsedModel = try JSONDecoder().decode(Service.ModelType.self, from: jsonData)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let parsedModel = try decoder.decode(Service.ModelType.self, from: jsonData)
             
             let isSuccess = singletonServiceInstance.service(model: parsedModel)
             

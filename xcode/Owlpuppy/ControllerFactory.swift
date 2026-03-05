@@ -8,7 +8,7 @@
 class ControllerFactory {
     static func makeAllControllers() -> [Controller] {
         return [
-            ApiRemindController(service: EventKitRemindService.shared),
+            ApiRemindController(service: RemindService.shared),
         ]
     }
 }
